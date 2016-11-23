@@ -14,7 +14,7 @@ use JSON qw(decode_json);
 #
 our %urls = (
     'base'         => 'https://www.freesound.org/apiv2',
-    'code'         => '/oauth2/',
+    'code'         => '/oauth2/authorize/',
     'access_token' => '/oauth2/access_token/',
     'search'       => '/search/text/?',
     'download'     => '/sounds/_ID_/download/',

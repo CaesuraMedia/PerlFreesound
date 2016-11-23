@@ -144,7 +144,7 @@ is( $freesound->expires_in,    '', "expires_in not defined yet ok" );
 # Get URL string.
 #
 my $auth_url
-    = 'https://www.freesound.org/apiv2/oauth2/?'
+    = 'https://www.freesound.org/apiv2/oauth2/authorize/?'
     . 'client_id=test_client_id'
     . '&response_type=code'
     . '&state=xyz';
