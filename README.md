@@ -109,8 +109,8 @@ it can automatically refresh the tokens.  The auth tokens are therefore kept as 
 When downloading a sound sample from Freesound a progress meter is available in "_counter\_file_"
 which is useful in web contexts as a progress bar.  Format of the file is :
 
-    <bytes-written>:<byes-total>:<percentage>
-       # for example "10943051:12578220:87", ie 87% of 12578220 bytes written.
+&lt;bytes-written>:&lt;byes-total>:&lt;percentage>
+\# for example "10943051:12578220:87", ie 87% of 12578220 bytes written.
 
 This is optional.
 
@@ -198,12 +198,13 @@ web-browser users Downloads directory.
 
     Checks the session file exists, has a current token.  If no session file, then
     returns URI to get the initial code from. If session file exists and and has not
-    expired then it assumes the authorisation is still ok.  If the tokens
+    expired then it checks with Freesound.org for existing authority.  If the tokens
     need refreshing and refresh\_if\_expired is set, it attempts a refresh.  If that's
     successful, then updates the session file with new oauth tokens.  Return error if
     the refresh didn't work (or refreshable but not asked to) - maybe because the
     authority has been revoked.  See [http://www.freesound.org/home/app\_permissions/](http://www.freesound.org/home/app_permissions/)
-    when logged into Freesound.org.
+    when logged into Freesound.org.  Return error if there is no authorisation at 
+    Freesound.org.
 
 - query ( _query-string_ )
 
