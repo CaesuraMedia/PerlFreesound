@@ -10,7 +10,7 @@ use Carp;
 
 use JSON qw(decode_json);
 
-# Freessound.org urls.
+# Freesound.org urls.
 #
 our %urls = (
     'base'         => 'https://www.freesound.org/apiv2',
@@ -18,6 +18,7 @@ our %urls = (
     'access_token' => '/oauth2/access_token/',
     'search'       => '/search/text/?',
     'download'     => '/sounds/_ID_/download/',
+    'me'           => '/me/',
 );
 
 =pod
@@ -137,8 +138,8 @@ it can automatically refresh the tokens.  The auth tokens are therefore kept as 
 When downloading a sound sample from Freesound a progress meter is available in "I<counter_file>"
 which is useful in web contexts as a progress bar.  Format of the file is :
 
-    <bytes-written>:<byes-total>:<percentage>
-       # for example "10943051:12578220:87", ie 87% of 12578220 bytes written.
+<bytes-written>:<byes-total>:<percentage>
+# for example "10943051:12578220:87", ie 87% of 12578220 bytes written.
 
 This is optional.
 
@@ -391,12 +392,13 @@ sub get_new_oauth_tokens {
 
 Checks the session file exists, has a current token.  If no session file, then
 returns URI to get the initial code from. If session file exists and and has not
-expired then it assumes the authorisation is still ok.  If the tokens
+expired then it checks with Freesound.org for existing authority.  If the tokens
 need refreshing and refresh_if_expired is set, it attempts a refresh.  If that's
 successful, then updates the session file with new oauth tokens.  Return error if
 the refresh didn't work (or refreshable but not asked to) - maybe because the
 authority has been revoked.  See L<http://www.freesound.org/home/app_permissions/>
-when logged into Freesound.org.
+when logged into Freesound.org.  Return error if there is no authorisation at 
+Freesound.org.
 
 =cut
 
@@ -443,6 +445,7 @@ sub check_authority {
             my $expired;
             $expired++
                 if ( ( $timestamp + $oauth_tokens->{'expires_in'} ) < time );
+
             if ( defined $args{'refresh_if_expired'} && $expired ) {
 
                 # Expired, refresh tokens.
@@ -482,6 +485,21 @@ sub check_authority {
                 . 'use get_authorization_url then get_oauth_tokens '
                 . 'with the returned code from Freesound' );
         $rc = undef;
+    }
+
+    # Finally, if we're all ok our end, check with Freesound.org.
+    #
+    if ($rc) {
+        my $url         = $urls{'base'} . $urls{'me'};
+        my $auth_String = "Bearer " . $self->access_token;
+        $self->ua->default_header( 'Authorization' => "$auth_String" );
+        my $response = $self->ua->get($url);
+        unless ( $response->is_success ) {
+            $rc = undef;
+            $self->error(
+                "Not authorised with Freesound : " . $response->status_line );
+        }
+
     }
     return $rc;
 }
