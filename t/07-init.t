@@ -91,7 +91,7 @@ EOSR
                 $response->code(200);
                 $response->content($search_results);
 
-                # Unauthrised to get results.
+                # Unauthorised to get results.
                 #
             }
             elsif ( $url =~ /99999/ ) {
