@@ -4,7 +4,7 @@ WebService::Freesound - Perl wrapper around Freesound OAuth2 API!
 
 # VERSION
 
-Version 0.01
+Version 0.02
 
 # SYNOPSIS
 
@@ -60,7 +60,7 @@ Version 0.01
     }
 
     # All done with OAuth2 now it ..should.. just work forever (or until you revoke
-    # the authorization at L<http://www.freesound.org/home/app_permissions/>, when
+    # the authorization at L<https://www.freesound.org/home/app_permissions/>, when
     # logged in, or set refresh_if_expired to undef).
     #
     # Get Freesound data, see L<https://www.freesound.org/docs/api/resources_apiv2.html>
@@ -83,7 +83,7 @@ Version 0.01
 
 # DESCRIPTION
 
-This module provides a Perl wrapper around the [http://Freesound.org](http://Freesound.org) RESTful API.
+This module provides a Perl wrapper around the [https://Freesound.org](https://Freesound.org) RESTful API.
 
 Freesound is a collaborative database of Creative Commons Licensed sounds. It allows
 you to browse, download and share sounds.  This Perl wrapper at present allows you
@@ -94,8 +94,8 @@ their website for this).
 The complete Freesound API is documented at [https://www.freesound.org/docs/api/index.html](https://www.freesound.org/docs/api/index.html)
 
 In order to use this Perl module you will need get an account at Freesound
-([http://www.freesound.org/home/register/](http://www.freesound.org/home/register/)) and then to register your application with them
-at [http://www.freesound.org/apiv2/apply](http://www.freesound.org/apiv2/apply). Your application will then be given a client ID and
+([https://www.freesound.org/home/register/](https://www.freesound.org/home/register/)) and then to register your application with them
+at [https://www.freesound.org/apiv2/apply](https://www.freesound.org/apiv2/apply). Your application will then be given a client ID and
 a client secret which you will need to use to get OAuth2 authorisation.
 
 The OAuth2 Dance is described at Freesound, [https://www.freesound.org/docs/api/authentication.html](https://www.freesound.org/docs/api/authentication.html)
@@ -127,7 +127,7 @@ If used as part of a web app, then the process could be :
 - Check for _session\_file_. If none then put up an iframe with the src set to output
 of `$freesound-`get\_authorization\_url();>
 - User clicks Authorise with a callback run (set in Freesound API credentials :
-[http://www.freesound.org/apiv2/apply](http://www.freesound.org/apiv2/apply) (ie http://localhost/cgi-bin/mayapp/do\_auth.cgi)
+[https://www.freesound.org/apiv2/apply](https://www.freesound.org/apiv2/apply) (ie https://localhost/cgi-bin/mayapp/do\_auth.cgi)
 which calls `$freesound-`get\_oauth\_tokens ($code))> - the code will be a parameter in
 the CGI (ie `$q-`param ('code')>).  
 - Text search box on main webpage can then be used as inputs to `$freesound-`query> -
@@ -202,7 +202,7 @@ web-browser users Downloads directory.
     need refreshing and refresh\_if\_expired is set, it attempts a refresh.  If that's
     successful, then updates the session file with new oauth tokens.  Return error if
     the refresh didn't work (or refreshable but not asked to) - maybe because the
-    authority has been revoked.  See [http://www.freesound.org/home/app\_permissions/](http://www.freesound.org/home/app_permissions/)
+    authority has been revoked.  See [https://www.freesound.org/home/app\_permissions/](https://www.freesound.org/home/app_permissions/)
     when logged into Freesound.org.  Return error if there is no authorisation at 
     Freesound.org.
 

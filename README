@@ -4,7 +4,7 @@ NAME
 
 VERSION
 
-    Version 0.01
+    Version 0.02
 
 SYNOPSIS
 
@@ -60,7 +60,7 @@ SYNOPSIS
         }
     
         # All done with OAuth2 now it ..should.. just work forever (or until you revoke
-        # the authorization at L<http://www.freesound.org/home/app_permissions/>, when
+        # the authorization at L<https://www.freesound.org/home/app_permissions/>, when
         # logged in, or set refresh_if_expired to undef).
         #
         # Get Freesound data, see L<https://www.freesound.org/docs/api/resources_apiv2.html>
@@ -83,7 +83,7 @@ SYNOPSIS
 
 DESCRIPTION
 
-    This module provides a Perl wrapper around the http://Freesound.org
+    This module provides a Perl wrapper around the https://Freesound.org
     RESTful API.
 
     Freesound is a collaborative database of Creative Commons Licensed
@@ -97,9 +97,9 @@ DESCRIPTION
     https://www.freesound.org/docs/api/index.html
 
     In order to use this Perl module you will need get an account at
-    Freesound (http://www.freesound.org/home/register/) and then to
+    Freesound (https://www.freesound.org/home/register/) and then to
     register your application with them at
-    http://www.freesound.org/apiv2/apply. Your application will then be
+    https://www.freesound.org/apiv2/apply. Your application will then be
     given a client ID and a client secret which you will need to use to get
     OAuth2 authorisation.
 
@@ -138,8 +138,8 @@ DESCRIPTION
       set to output of $freesound-get_authorization_url();>
 
       * User clicks Authorise with a callback run (set in Freesound API
-      credentials : http://www.freesound.org/apiv2/apply (ie
-      http://localhost/cgi-bin/mayapp/do_auth.cgi) which calls
+      credentials : https://www.freesound.org/apiv2/apply (ie
+      https://localhost/cgi-bin/mayapp/do_auth.cgi) which calls
       $freesound-get_oauth_tokens ($code))> - the code will be a parameter
       in the CGI (ie $q-param ('code')>).
 
@@ -225,7 +225,7 @@ DESCRIPTION
       successful, then updates the session file with new oauth tokens.
       Return error if the refresh didn't work (or refreshable but not asked
       to) - maybe because the authority has been revoked. See
-      http://www.freesound.org/home/app_permissions/ when logged into
+      https://www.freesound.org/home/app_permissions/ when logged into
       Freesound.org. Return error if there is no authorisation at
       Freesound.org.
 

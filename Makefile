@@ -62,11 +62,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = WebService::Freesound
 NAME_SYM = WebService_Freesound
-VERSION = 0.01
+VERSION = 0.02
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_01
+VERSION_SYM = 0_02
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.01
+XS_VERSION = 0.02
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -261,7 +261,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = WebService-Freesound
-DISTVNAME = WebService-Freesound-0.01
+DISTVNAME = WebService-Freesound-0.02
 
 
 # --- MakeMaker macro section:
@@ -517,7 +517,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  LWP::Simple: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  LWP::UserAgent: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  perl: '\''5.006'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: '\''0.02'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'x_serialization_backend: '\''CPAN::Meta::YAML version 0.012'\''' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
@@ -570,7 +570,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "0.01",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "0.02",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "x_serialization_backend" : "JSON::PP version 2.27300"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
@@ -880,7 +880,7 @@ testdb_static :: static pure_all
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Freesound" VERSION="0.01">' > WebService-Freesound.ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Freesound" VERSION="0.02">' > WebService-Freesound.ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Perl wrapper around Freesound OAuth2 API!</ABSTRACT>' >> WebService-Freesound.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>Andy Cragg &lt;andyc@caesuramedia.com&gt;</AUTHOR>' >> WebService-Freesound.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Freesound.ppd
